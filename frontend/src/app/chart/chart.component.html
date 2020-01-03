@@ -1,0 +1,27 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xl-7 col-lg-7 col-md-6 col-sm-12 col-12">
+      <div style="display: block;">
+        <canvas baseChart width="400" height="400"
+                [datasets]="lineChartData"
+                [labels]="lineChartLabels"
+                [options]="lineChartOptions"
+                [colors]="lineChartColors"
+                [legend]="lineChartLegend"
+                [chartType]="lineChartType"
+                [plugins]="lineChartPlugins"></canvas>
+      </div>
+    </div>
+    <div class="col-xl-5 col-lg-5 col-md-6 col-sm-12 col-12">
+      <table class="table table-responsive table-condensed">
+        <tr>
+          <th *ngFor="let label of lineChartLabels">{{label}}</th>
+        </tr>
+        <tr *ngFor="let d of lineChartData; let i=index" [class]="'line-'+i">
+          <td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j]}}</td>
+        </tr>
+      </table>
+      <button class="btn btn-dark m-1" (click)="refresh()">Randomize</button>
+    </div>
+  </div>
+</div>
